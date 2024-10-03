@@ -792,37 +792,51 @@ The ALTER command in MySQL is used to modify the structure of an existing table.
 
 `ALTER TABLE table_name ADD column_name column_type;`
 
-```SQL ALTER TABLE student ADD marks int;```
+```SQL 
+ALTER TABLE student ADD marks int;
+```
 
 **DROP column**
 
-```SQL ALTER TABLE student DROP COLUMN marks;```
+```SQL 
+ALTER TABLE student DROP COLUMN marks;
+```
 
 **Modify column**
 
 `ALTER TABLE table_name MODIFY column_name new_column_type;`
 
-```SQL ALTER TABLE student MODIFY COLUMN marks varchar(100);```
+```SQL 
+ALTER TABLE student MODIFY COLUMN marks varchar(100);
+```
 
 **Change a Column Name**
 
 `ALTER TABLE table_name CHANGE old_column_name new_column_name column_type;`
 
-```SQL ALTER TABLE student CHANGE COLUMN marks student_marks varchar(100);```
+```SQL 
+ALTER TABLE student CHANGE COLUMN marks student_marks varchar(100);
+```
 
 **Rename a Table**
 
 `ALTER TABLE old_table_name RENAME new_table_name;`
 
-```SQL ALTER table student_marks RENAME marks_detail;```
+```SQL 
+ALTER table student_marks RENAME marks_detail;
+```
 
 **Add a Primary Key**
 
-```SQL ALTER TABLE table_name ADD PRIMARY KEY (column_name);```
+```SQL 
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
+```
 
 **Drop a Primary Key**
 
-```SQL ALTER TABLE table_name DROP PRIMARY KEY;```
+```SQL 
+ALTER TABLE table_name DROP PRIMARY KEY;
+```
 
 ### DROP and TRUNCATE
 
@@ -830,13 +844,19 @@ The ALTER command in MySQL is used to modify the structure of an existing table.
 
 Completely removes the table and all its data from the database.
 
-```SQL DROP TABLE orders;```
+```SQL 
+DROP TABLE orders;
+```
 
-```SQL TRUNCATE  TABLE table_name;```
+```SQL 
+TRUNCATE  TABLE table_name;
+```
 
 Removes all rows from the table but retains the table structure for future use.
 
-```SQL TRUNCATE TABLE student_perssonal_info;```
+```SQL 
+TRUNCATE TABLE student_perssonal_info;
+```
 
 ### VIEW 
 
