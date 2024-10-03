@@ -359,13 +359,19 @@ SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%' OR Admission_Date
 
 **Example**
 
-- `SELECT Roll_No,Department FROM student WHERE name REGEXP '^st';`
+```SQL
+SELECT Roll_No,Department FROM student WHERE name REGEXP '^st';
+```
+```SQL
+SELECT Roll_No,Department FROM student WHERE name REGEXP '[tve]';
+```
+```SQL
+SELECT Roll_No,Department FROM student WHERE name REGEXP '[tve]';
+```
 
-- `SELECT Roll_No,Department FROM student WHERE name REGEXP '[tve]';`
-
-- `SELECT Roll_No,Department FROM student WHERE name REGEXP '[tve]';`
-
-- `SELECT Roll_No,Department FROM student WHERE name REGEXP 'jerry|^St|[oa]';`
+```SQL
+SELECT Roll_No,Department FROM student WHERE name REGEXP 'jerry|^St|[oa]';
+```
 
 ### ORDER BY
 
@@ -374,14 +380,18 @@ Use for ordering is ascending and descending order
 `SELECT column1,column2 FROM table_name ORDER BY column1,column2 ASC| DESC;`
 
 **Example:**
-
-- `SELECT * FROM student ORDER BY Name ASC;`
-
-- `SELECT * FROM student ORDER BY Name DESC;`
-
-- `SELECT * FROM student ORDER BY Admission_Date ASC;`
-
-- `SELECT * FROM student WHERE Name='steve' ORDER BY Admission_Date ASC;`
+```SQL
+SELECT * FROM student ORDER BY Name ASC;
+```
+```SQL
+SELECT * FROM student ORDER BY Name DESC;
+```
+```SQL
+SELECT * FROM student ORDER BY Admission_Date ASC;
+```
+```SQL
+SELECT * FROM student WHERE Name='steve' ORDER BY Admission_Date ASC;
+```
 
 ### DISTINCT
 
@@ -391,9 +401,12 @@ To show all different record with in a column. It remove duplicate.
 
 **Example:**
 
-- `SELECT DISTINCT Name FROM student;`
-
-- `SELECT DISTINCT Name,Department FROM student;`
+```SQL
+SELECT DISTINCT Name FROM student;
+```
+```SQL
+SELECT DISTINCT Name,Department FROM student;
+```
 
 ### NULL and NOT NULL
 
@@ -405,9 +418,12 @@ To search for value if entry is null
 
 **Example:**
 
-- `SELECT * FROM student WHERE Roll_No IS NULL;`
-
-- `SELECT * FROM student WHERE Roll_No IS NOT NULL;`
+```SQL
+SELECT * FROM student WHERE Roll_No IS NULL;
+```
+```SQL
+SELECT * FROM student WHERE Roll_No IS NOT NULL;
+```
 
 ### LIMIT and OFFSET
 
@@ -423,18 +439,21 @@ Offset is use as a starting number if we want to print record between two point
 
 **Example:**
 
-`SELECT * FROM student LIMIT 3;`
-
-`SELECT * FROM student WHERE Admission_Date > '2021-01-10' LIMIT 3;`
-
+```SQL
+SELECT * FROM student LIMIT 3;
+```
+```SQL
+SELECT * FROM student WHERE Admission_Date > '2021-01-10' LIMIT 3;
+```
 ### LIMIT with OFFSET
 
-`SELECT * FROM student WHERE Department = 'Cyber Security' LIMIT 2,3;`
-
+```SQL
+SELECT * FROM student WHERE Department = 'Cyber Security' LIMIT 2,3;
+```
 This query skip first two line.
-
-`SELECT * FROM student WHERE Admission_Date > '2021-01-10' LIMIT 0,3;`
-
+```SQL
+SELECT * FROM student WHERE Admission_Date > '2021-01-10' LIMIT 0,3;
+```
 Check first three
 
 ### UPDATE
@@ -443,15 +462,25 @@ Check first three
 
 **Example**
 
-`UPDATE student_marks SET marks=100 WHERE Name='Ben';`
+```SQL
+UPDATE student_marks SET marks=100 WHERE Name='Ben';
+```
 
-If this give error
-
-Then type `SET SQL_SAFE_UPDATES = 0;` to disable safe mode then run `SET SQL_SAFE_UPDATES = 1;` after query execution to enable safe mode
-
-`UPDATE student SET Roll_No=6478,Department='Data science'  WHERE Admission_Date='2023-02-20';`
-
-`UPDATE student SET Roll_No=5278 WHERE Admission_Date IN ('2022-06-10','2023-04-11');`
+If this give error,then type
+```SQL 
+SET SQL_SAFE_UPDATES = 0;
+``` 
+This will disable safe mode. 
+After query execution run 
+```SQL
+SET SQL_SAFE_UPDATES = 1 -- to enable safe mode;
+```
+```SQL
+UPDATE student SET Roll_No=6478,Department='Data science'  WHERE Admission_Date='2023-02-20';
+```
+```SQL
+UPDATE student SET Roll_No=5278 WHERE Admission_Date IN ('2022-06-10','2023-04-11');
+```
 
 ### COMMIT & ROLLBACK
 
@@ -461,13 +490,12 @@ COMMIT is barrier to stop ROLL BACK to a limit.
 
  Roll BACK only work on three command INSERT ,UPDATE ,DELETE
 
-`COMMIT;`
-
-`INSERT INTO student(Name,Roll_No) VALUES("Root",2643);`
-
-`INSERT INTO student(Name,Roll_No) VALUES("Anderson",2643);`
-
-`ROLLBACK;`
+```SQL
+COMMIT; 
+INSERT INTO student(Name,Roll_No) VALUES("Root",2643);
+INSERT INTO student(Name,Roll_No) VALUES("Anderson",2643);
+ROLLBACK;
+```
 
 Save previous state add two new query and then rollback
 
@@ -477,9 +505,10 @@ Save previous state add two new query and then rollback
 
 **Example:**
 
-`DELETE FROM student WHERE Name='Root' OR Name='Anderson' OR Name='Henry';`
-
-`DELETE FROM student_personal_info;`
+```SQL
+DELETE FROM student WHERE Name='Root' OR Name='Anderson' OR Name='Henry';
+DELETE FROM student_personal_info;
+```
 
 ### PRIMARY KEY and FOREIGN KEY Constraints
 
@@ -494,17 +523,12 @@ Primary is not like unique because it cannot contain null value
 **PRIMARY KEY**
 
 **Example:**
-```
+```SQL
 CREATE TABLE BankAccount(
-
-Account_No INT NOT NULL,
-
+    Account_No INT NOT NULL,
     Balance INT,
-
     Name VARCHAR(40) NOT NULL,
-
     PRIMARY KEY(Account_No)
-
 );
 ```
 
@@ -514,16 +538,18 @@ If table already exist
 
 **Example**
 
-`ALTER TABLE bankaccount ADD PRIMARY KEY (Account_No);`
+```SQL
+ALTER TABLE bankaccount ADD PRIMARY KEY (Account_No);
+```
 
 **To delete a primary key**
 
 `ALTER TABLE table_name ADD PRIMARY KEY(Column);`
 
 **Example**
-
+```SQL
 ALTER TABLE BankAccount DROP PRIMARY KEY;
-
+```
 ### FOREIGN KEY
 
 It is used to link to table together
@@ -533,7 +559,7 @@ A primary key in one table is pointed by foreign key in another table
 `FOREIGN KEY (COLUMN) REFRENCES SECOND_TABLE_NAME(COLUMN)`
 
 **Table 1**
-```
+```SQL
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -542,7 +568,7 @@ CREATE TABLE Customers (
 ```
 
 **Table 2**
-```
+```SQL
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     OrderDate DATE,
@@ -554,24 +580,28 @@ CREATE TABLE Orders (
 
 **Table1 insertion**
 
-- `INSERT INTO Customers (CustomerID, Name, Email) VALUES (1, 'John Doe', 'john@example.com');`
-
-- `INSERT INTO Customers (CustomerID, Name, Email) VALUES (2, 'Jane Smith', 'jane@example.com');`
+```SQL
+INSERT INTO Customers (CustomerID, Name, Email) VALUES (1, 'John Doe', 'john@example.com');
+INSERT INTO Customers (CustomerID, Name, Email) VALUES (2, 'Jane Smith', 'jane@example.com');
+```
 
 **Table2 insertion**
 
-- `INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (1, '2023-01-01', 100.00, 1);`
-
-- `INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (2, '2023-01-02', 150.00, 2);`
-
-- `INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (3, '2023-01-03', 200.00, 1);`
+```SQL 
+INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (1, '2023-01-01', 100.00, 1);
+INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (2, '2023-01-02', 150.00, 2);
+INSERT INTO Orders (OrderID, OrderDate, Amount, CustomerID) VALUES (3, '2023-01-03', 200.00, 1);
+```
 
 **If table already exist**
 
-`ALTER TABLE child_table_name ADD FOREIGN KEY (child_column_name)`
+```SQL 
+ALTER TABLE child_table_name ADD FOREIGN KEY (child_column_name);
+```
 
-`REFERENCES parent_table_name(parent_column_name);`
-
+```SQL
+REFERENCES parent_table_name(parent_column_name);
+```
 ### JOIN
 
 **INNER JOIN**
