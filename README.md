@@ -36,7 +36,7 @@
 - [VIEW](#view)
 - [INDEX](#index)
 - [One-To-One RelationShip](#one-to-one-relationship)
-- [One-To-Many RelationShip](#dummy)
+- [One-To-Many RelationShip](#one-to-many-relationship)
 - [Many-To-Many RelationShip](#dummy)
 
 ### For creating database
@@ -900,10 +900,32 @@ Resulting Table After View Query
 | jason@Nothing.com       |235678654565666          |
 
 
+### One To Many RelationShip
 
+A one-to-many relationship is a type of database relationship where a single record in one table can be associated with multiple records in another table, while each record in the second table is linked to only one record in the first table.
 
+Table1
 
+```SQL
+CREATE TABLE Teacher(
+	TeacherID INT PRIMARY KEY,
+    TeacherName VARCHAR(50)
+);
+```
 
+Table2
+
+```SQL
+CREATE TABLE NewStudent(
+	StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    TeacherID INT,
+    FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
+);
+
+```
+
+The one key difference that distinguishes a **one-to-one relationship** from a **one-to-many relationship** is `the uniqueness of the foreign key`
 
 
 
