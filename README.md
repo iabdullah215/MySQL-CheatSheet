@@ -65,11 +65,15 @@ create table student(
 
 ### Using a specific database
 
-`use database_name;`
+```SQL
+use database_name;
+```
 
 ### Showing all table:
 
-`Show tables;`
+```SQL 
+Show tables;
+```
 
 ### Inserting values into a table
 
@@ -906,7 +910,9 @@ It is used for fat search but using if for table having 50 to 200 or 300 entries
 
 **Example**
 
-`CREATE INDEX student_name ON student(Name);`
+```SQL
+CREATE INDEX student_name ON student(Name);
+```
 
 ### One To One RelationShip
 
