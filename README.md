@@ -37,7 +37,7 @@
 - [INDEX](#index)
 - [One-To-One RelationShip](#one-to-one-relationship)
 - [One-To-Many RelationShip](#one-to-many-relationship)
-- [Many-To-Many RelationShip](#dummy)
+- [Many-To-Many RelationShip](#many-to-many-relationship)
 
 ### For creating database
 
@@ -608,7 +608,7 @@ REFERENCES parent_table_name(parent_column_name);
 
 An inner join is a type of join that returns rows from multiple tables where the join condition is met. The inner join selects records that have matching values in both tables. If no matching values are found, the row is not returned.
 
-```
+```SQL
 SELECT columns
 FROM table1
 INNER JOIN table2
@@ -617,17 +617,17 @@ ON table1.common_column = table2.common_column;
 
 **Example**
 
-- `SELECT * FROM student INNER JOIN student_marks ON student.Name=student_marks.Name;`
-
-- `SELECT student.Name FROM student INNER JOIN student_marks ON student.Name=student_marks.Name;`
-
-- `SELECT S.Name FROM student S INNER JOIN student_marks SM ON S.Name=SM.Name;`
+```SQL
+SELECT * FROM student INNER JOIN student_marks ON student.Name=student_marks.Name;
+SELECT student.Name FROM student INNER JOIN student_marks ON student.Name=student_marks.Name;
+SELECT S.Name FROM student S INNER JOIN student_marks SM ON S.Name=SM.Name;
+```
 
 **LEFT JOIN**
 
 It print all data from left table and matching data from right table
 
-```
+```SQL
 SELECT columns
 FROM table1
 LEFT JOIN table2
@@ -637,15 +637,16 @@ Where table 1 is left
 
 **Example**
 
-`SELECT * FROM bankaccount LEFT JOIN student ON bankaccount.Name=student.Name;`
-
-`SELECT Department FROM student LEFT JOIN bankaccount ON bankaccount.Name=student.Name;`
+```SQL
+SELECT * FROM bankaccount LEFT JOIN student ON bankaccount.Name=student.Name;
+SELECT Department FROM student LEFT JOIN bankaccount ON bankaccount.Name=student.Name;
+```
 
 **RIGHT JOIN**
 
 It print all data from left table and matching data from right table
 
-```
+```SQL
 SELECT columns
 FROM table1
 RIGHT JOIN table2
@@ -655,23 +656,24 @@ Where table 1 is RIGHT
 
 **Example**
 
-`SELECT * FROM bankaccount RIGHT JOIN student ON bankaccount.Name=student.Name;`
-
-`SELECT Department FROM student RIGHT JOIN bankaccount ON bankaccount.Name=student.Name;`
+```SQL
+SELECT * FROM bankaccount RIGHT JOIN student ON bankaccount.Name=student.Name;
+SELECT Department FROM student RIGHT JOIN bankaccount ON bankaccount.Name=student.Name;
+```
 
 **CROSS JOIN**
 
 In cross join all row of table1 make combination of all row of table2
 
 If we have 3 rows in table 1 and 5 rows in table2 then number of combination will be 3x5=15
-```
+
+```SQL
 SELECT *
 FROM table1
 CROSS JOIN table2;
 ```
 
-
-```
+```SQL
 SELECT * FROM table1 CROSS JOIN table2;
 JOIN
 SELECT
@@ -683,7 +685,6 @@ INNER JOIN table3 ON table2.common_column = table3.common_column
 WHERE
     condition;
 ```
-
 
 ### GROUP BY & HAVING:
 
@@ -697,7 +698,8 @@ The GROUP BY clause in MySQL is used to group rows that have the same values in 
 | 4        | 103         | 203        | 4        | 30.00 |
 | 5        | 102         | 201        | 1        | 10.00 |
 
-```
+
+```SQL
 SELECT customer_id, SUM(quantity) AS total_quantity
 FROM orders
 GROUP BY customer_id;
@@ -713,7 +715,7 @@ Output
 
 The HAVING clause in MySQL is used to filter groups of rows after the GROUP BY clause has been applied. It is similar to the WHERE clause but is used specifically for aggregate functions.
 
-```
+```SQL
 SELECT product_id, SUM(quantity * price) AS total_sales
 FROM orders
 GROUP BY product_id
@@ -731,16 +733,15 @@ UNION print only unique entries
 
 UNION ALL print all entries includinf duplicate
 
-```
+```SQL
 SELECT column1,column2 FROM tabal1
-
 UNION/UNION ALL
-
 SELELCT column1,column2 FROM table2;
 ```
 
 **Example:**
-```
+
+```SQL
 SELECT Account_No FROM bankaccount
 UNION ALL
 SELECT order_id FROM orders;
@@ -749,13 +750,15 @@ SELECT order_id FROM orders;
 ### IF & CASE
 
 The IF function is used to return one value if a condition is true and another value if it is false.
-```
+
+```SQL
 IF(condition, true_value, false_value) AS alias_name
 FROM table_name;
 ```
 
 The CASE statement is more versatile than IF and allows for multiple conditions.
-```
+
+```SQL
 CASE expression
     WHEN value1 THEN result1
     WHEN value2 THEN result2
@@ -767,11 +770,11 @@ FROM table_name;
 
 **IF example:**
 
-`SELECT *, IF(marks>40, "Pass","Fail") AS result FROM student_marks;`
+`SQL SELECT *, IF(marks>40, "Pass","Fail") AS result FROM student_marks;`
 
 **CASE example:**
 
-```
+```SQL
 SELECT Name,marks, CASE
 WHEN marks>40 && marks<60 THEN "c"
         WHEN marks>=60 && marks<80 THEN "B"
@@ -789,37 +792,37 @@ The ALTER command in MySQL is used to modify the structure of an existing table.
 
 `ALTER TABLE table_name ADD column_name column_type;`
 
-`ALTER TABLE student ADD marks int;`
+`SQL ALTER TABLE student ADD marks int;`
 
 **DROP column**
 
-`ALTER TABLE student DROP COLUMN marks;`
+`SQL ALTER TABLE student DROP COLUMN marks;`
 
 **Modify column**
 
 `ALTER TABLE table_name MODIFY column_name new_column_type;`
 
-`ALTER TABLE student MODIFY COLUMN marks varchar(100);`
+`SQL ALTER TABLE student MODIFY COLUMN marks varchar(100);`
 
 **Change a Column Name**
 
 `ALTER TABLE table_name CHANGE old_column_name new_column_name column_type;`
 
-`ALTER TABLE student CHANGE COLUMN marks student_marks varchar(100);`
+`SQL ALTER TABLE student CHANGE COLUMN marks student_marks varchar(100);`
 
 **Rename a Table**
 
 `ALTER TABLE old_table_name RENAME new_table_name;`
 
-`ALTER table student_marks RENAME marks_detail;`
+`SQL ALTER table student_marks RENAME marks_detail;`
 
 **Add a Primary Key**
 
-`ALTER TABLE table_name ADD PRIMARY KEY (column_name);`
+`SQL ALTER TABLE table_name ADD PRIMARY KEY (column_name);`
 
 **Drop a Primary Key**
 
-`ALTER TABLE table_name DROP PRIMARY KEY;`
+`SQL ALTER TABLE table_name DROP PRIMARY KEY;`
 
 ### DROP and TRUNCATE
 
@@ -827,25 +830,26 @@ The ALTER command in MySQL is used to modify the structure of an existing table.
 
 Completely removes the table and all its data from the database.
 
-`DROP TABLE orders;`
+`SQL DROP TABLE orders;`
 
-`TRUNCATE  TABLE table_name;`
+`SQL TRUNCATE  TABLE table_name;`
 
 Removes all rows from the table but retains the table structure for future use.
 
-`TRUNCATE TABLE student_perssonal_info;`
+`SQL TRUNCATE TABLE student_perssonal_info;`
 
 ### VIEW 
 
 It is used to save large query which is used multiple time in a database. We can access it with a key view name
+
 ```
 CREATE VIEW view_name AS
-
 query here
 ```
 
 **Example**
-```
+
+```SQL
 CREATE VIEW print_table AS
 SELECT student.Name
 FROM student
@@ -861,6 +865,7 @@ DROP VIEW print_table;
 **Modifying a View**
 
 To modify an existing view, you use the CREATE OR REPLACE VIEW statement.
+
 ```
 CREATE OR REPLACE VIEW view_name AS
 SELECT column1, column2, ...
@@ -873,7 +878,7 @@ INDEX
 
 It is used for fat search but using if for table having 50 to 200 or 300 entries ha no such effect.
 
-`CREATE INDEX  index_name ON TABLE(column1,column2);`
+`CREATE INDEX index_name ON TABLE(column1,column2);`
 
 **DELETE INDEX**
 
@@ -881,13 +886,13 @@ It is used for fat search but using if for table having 50 to 200 or 300 entries
 
 **Example**
 
-`CREATE INDEX  student_name ON student(Name);`
+`CREATE INDEX student_name ON student(Name);`
 
 ### One To One RelationShip
 
 In a one-to-one relationship, each record in one table is linked to a single record in another table. This relationship is commonly used to split data into multiple tables for better organization, security, or performance.
 
-Table 1
+Table 1: Employees
 
 ```SQL
 CREATE TABLE Employees (
@@ -898,7 +903,7 @@ CREATE TABLE Employees (
 );
 ```
 
-Table 2
+Table 2: EmployeeDetails
 ```SQL
 CREATE TABLE EmployeeDetails (
     DetailID INT PRIMARY KEY,
@@ -937,7 +942,7 @@ INSERT INTO EmployeeDetails (DetailID,EmployeeID,PhoneNumber,Address)
 | 2        | 2          | 235678654565666  | No address   |
 
 
-TO show DataFrom Both Database we use
+TO show Data From Both Table we use
 
 ```SQL
 SELECT 
@@ -962,7 +967,7 @@ Resulting Table After View Query
 
 A one-to-many relationship is a type of database relationship where a single record in one table can be associated with multiple records in another table, while each record in the second table is linked to only one record in the first table.
 
-Table1
+Table1: Teacher
 
 ```SQL
 CREATE TABLE Teacher(
@@ -971,7 +976,7 @@ CREATE TABLE Teacher(
 );
 ```
 
-Table2
+Table2: NewStudent
 
 ```SQL
 CREATE TABLE NewStudent(
@@ -985,7 +990,40 @@ CREATE TABLE NewStudent(
 
 The one key difference that distinguishes a **one-to-one relationship** from a **one-to-many relationship** is `the uniqueness of the foreign key`
 
+### One To Many RelationShip
 
+A many-to-many relationship in a database allows multiple records in one table to be associated with multiple records in another table, typically implemented through a junction table that contains foreign keys from both tables.
+
+Table1: Student
+
+```SQL
+CREATE TABLE Student(
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50)
+);
+```
+
+
+Table2: Course
+
+```SQL
+CREATE TABLE Course(
+	CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50)
+);
+```
+Table to create many to many relationship 
+
+Junction Table: Enrollment
+```SQL
+CREATE TABLE ENrollement(
+	EnrollementID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+```
 
 
 
