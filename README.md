@@ -46,19 +46,15 @@
 ### Creating table
 
 ```
-CREATE TBALE table_name(
-
+CREATE TABLE table_name(
 Column1 datatype,
-
 Column2 datatype,
-
 Column3 datatype,
-
 );
 ```
 
 **Example:**
-```
+```SQL
 create table student(
     Name varchar(40),
     Roll_No int,
@@ -80,7 +76,7 @@ create table student(
 `INSERT INTO table_name (column1,column2,column3) VALUES(VALUE1, VALUE2,VALUE3);`
 
 **Example**
-```
+```SQL
 INSERT INTO student(Name,Roll_No,Department,Admission_Date) VALUES("Steve",2363,"Cyber Security","2024-06-10");
 ```
 
