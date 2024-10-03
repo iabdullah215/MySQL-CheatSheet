@@ -35,7 +35,9 @@
 - [DROP and TRUNCATE](#drop-and-truncate)
 - [VIEW](#view)
 - [INDEX](#index)
-
+- [One-To-One RelationShip](#one-to-one-relationship)
+- [One-To-Many RelationShip](#dummy)
+- [Many-To-Many RelationShip](#dummy)
 
 ### For creating database
 
@@ -822,3 +824,92 @@ It is used for fat search but using if for table having 50 to 200 or 300 entries
 **Example**
 
 `CREATE INDEX  student_name ON student(Name);`
+
+### One To One RelationShip
+
+In a one-to-one relationship, each record in one table is linked to a single record in another table. This relationship is commonly used to split data into multiple tables for better organization, security, or performance.
+
+Table 1
+
+```SQL
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE
+);
+```
+
+Table 2
+```SQL
+CREATE TABLE EmployeeDetails (
+    DetailID INT PRIMARY KEY,
+    EmployeeID INT UNIQUE,
+    PhoneNumber VARCHAR(15),
+    Address VARCHAR(255),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+```
+To insert  we use
+
+```SQL
+INSERT INTO Employees (EmployeeID,FirstName,LastName,Email)
+	VALUES(1,"Henry","Ben","Henry@Nothing.com"),
+			(2,"Jason","Ben","jason@Nothing.com");
+            
+INSERT INTO EmployeeDetails (DetailID,EmployeeID,PhoneNumber,Address)
+	VALUES(1,1,"223456543234543","No address"),
+		  (2,2,"235678654565666","No address");
+```
+
+## Tables After Insertion
+
+### Employees Table
+
+| EmployeeID | FirstName | LastName | Email                   |
+|-------------|-----------|----------|-------------------------|
+| 1           | Henry     | Ben      | Henry@Nothing.com       |
+| 2           | Jason     | Ben      | jason@Nothing.com       |
+
+### EmployeeDetails Table
+
+| DetailID | EmployeeID | PhoneNumber      | Address      |
+|----------|------------|------------------|--------------|
+| 1        | 1          | 223456543234543  | No address   |
+| 2        | 2          | 235678654565666  | No address   |
+
+
+TO show DataFrom Both Database we use
+
+```SQL
+SELECT 
+	E.Email,
+    Ed.PhoneNumber 
+FROM 
+	Employees E 
+JOIN 
+	EmployeeDetails Ed on Ed.EmployeeID=E.EmployeeID;
+
+```
+
+Resulting Table After View Query
+
+| Email                   | Phone Number            |
+|-------------------------|-------------------------|
+| Henry@Nothing.com       |223456543234543          |
+| jason@Nothing.com       |235678654565666          |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
