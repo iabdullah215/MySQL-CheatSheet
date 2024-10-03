@@ -84,23 +84,17 @@ INSERT INTO student(Name,Roll_No,Department,Admission_Date) VALUES("Steve",2363,
 
 ```
 INSERT INTO table_name (column1,column2,column3)
-
 VALUES(VALUE1, VALUE2,VALUE3),
-
-   (VALUE1, VALUE2,VALUE3),
-
-   (VALUE1, VALUE2,VALUE3);
+   (VALUE1, VALUE2,VALUE3),
+   (VALUE1, VALUE2,VALUE3);
 ```
 
 **Example**
-```
+```SQL
 INSERT INTO student(Name,Roll_No,Department,Admission_Date)
-
 VALUES("Steve",2363,"Cyber Security","2024-06-10"),
-
-   ("jerry",6478,"Computer Science","2023-02-20"),
-
-              ("broad",1896,"Software eng","2022-05-15");
+   ("jerry",6478,"Computer Science","2023-02-20"),
+   ("broad",1896,"Software eng","2022-05-15");
 ```
 
 ### Constraints in MySQL
@@ -108,19 +102,14 @@ VALUES("Steve",2363,"Cyber Security","2024-06-10"),
 Restriction on columns
 
 - NOT NULL
-
 - UNIQUE
-
 - DEFAULT
-
 - CHECK
-
 - FOREIGN KEY
-
 - PRIMARY KEY
 
 **Example**
-```
+```SQL
 CREATE table STUDENT_PERSSONAL_INFO(
 city varchar(100) NOT NULL,
     gender VARCHAR(20) NOT NULL,
@@ -132,17 +121,15 @@ city varchar(100) NOT NULL,
 
 ### inserting-in-table-with-constraints
 
-```
+```SQL
 insert INTO student_perssonal_info(city,gender,age,ph_number,father_name)
-
 value("sydney","M",19,114320132,"steve");
 ```
 
 For default condition
 
-```
+```SQL
 insert INTO student_perssonal_info(city,gender,age,ph_number)
-
 value("sydney","M",19,112320132);
 ```
 
@@ -154,7 +141,9 @@ If ph_number is not entered it will add a default value of not entered.
 
 **Example:**
 
-`SELECT Name, Roll_No FROM student;`
+```SQL
+SELECT Name, Roll_No FROM student;
+```
 
 ### Showing all tables
 
@@ -162,7 +151,9 @@ If ph_number is not entered it will add a default value of not entered.
 
 **Example:**
 
-`SELECT * FROM student;`
+```SQL
+SELECT * FROM student;
+```
 
 ### Showing column name with different heading
 
@@ -170,11 +161,15 @@ If ph_number is not entered it will add a default value of not entered.
 
 **Example**
 
-`SELECT Name AS Student_Name, Roll_No AS ID FROM student;`
+```SQL
+SELECT Name AS Student_Name, Roll_No AS ID FROM student;
+```
 
 Or
 
-`SELECT Name AS "Student Name", "Roll No" AS ID FROM student;`
+```SQL
+SELECT Name AS "Student Name", "Roll No" AS ID FROM student;
+```
 
 ### WHERE clause With SELECT
 
@@ -186,11 +181,15 @@ Or
 
 **Example:**
 
-`SELECT Name , Roll_No FROM student WHERE Roll_NO=2363;`
+```SQL
+SELECT Name , Roll_No FROM student WHERE Roll_NO=2363;
+```
 
 To show all column for a specific condition
 
-`SELECT * FROM student WHERE Roll_NO !=2363;`
+```SQL
+SELECT * FROM student WHERE Roll_NO !=2363;
+```
 
 ### Operators
 
@@ -198,9 +197,9 @@ To show all column for a specific condition
 
 **Example:**
 
-`SELECT Name , Roll_No FROM student WHERE age>20 AND age<22;`
-
-`SELECT Name , Roll_No FROM student WHERE age>20 OR age<22;`
+```SQL
+SELECT Name , Roll_No FROM student WHERE age>20 AND age<22;
+```
 
 ### IN Operators
 
@@ -208,21 +207,28 @@ Search value if match with enter value in IN
 
 **Example:**
 
-`SELECT Name,Department FROM student WHERE Roll_No IN(2363);`
+```SQL
+SELECT Name,Department FROM student WHERE Roll_No IN(2363);
+```
+Print name and department where *roll number* is 2363;
 
-Print name and department where roll number is 2363;
+```SQL
+SELECT Name,Department FROM student WHERE Admission_Date IN('2024-06-10','2023-02-20');
+```
 
-`SELECT Name,Department FROM student WHERE Admission_Date IN('2024-06-10','2023-02-20');`
+Print name and department where *admission date* is 2024-06-10 or 2023-02-20
 
-Print name and department where roll number is 2024-06-10 or 2023-02-20
-
-`SELECT * FROM student WHERE Admission_Date IN('2024-06-10','2023-02-20');`
+```SQL
+SELECT * FROM student WHERE Admission_Date IN('2024-06-10','2023-02-20');
+```
 
 ### BETWEEN Operator
 
 **Example:**
 
-`AGE BETWEEN 18 AND 20`
+```SQL
+AGE BETWEEN 18 AND 20
+```
 
 ### BETWEEN WITH SELECT
 
@@ -230,17 +236,25 @@ Print name and department where roll number is 2024-06-10 or 2023-02-20
 
 Examples:
 
-`SELECT * FROM student WHERE Admission_Date BETWEEN "2022-01-15" AND "2024-05-10";
+```SQL
+SELECT * FROM student WHERE Admission_Date BETWEEN "2022-01-15" AND "2024-05-10";
+```
 
-`SELECT Name FROM student WHERE Admission_Date BETWEEN "2022-01-15" AND "2024-05-10";`
+```SQL
+SELECT Name FROM student WHERE Admission_Date BETWEEN "2022-01-15" AND "2024-05-10";
+```
 
-`SELECT * FROM student WHERE Name BETWEEN "a" AND "q";`
+```SQL
+SELECT * FROM student WHERE Name BETWEEN "a" AND "q";
+```
 
 All name that have starting Alphabet between a and q
 
 Or we use
 
-`SELECT * FROM student WHERE Name BETWEEN "aston" AND "qais";`
+```SQL
+SELECT * FROM student WHERE Name BETWEEN "aston" AND "qais";
+```
 
 ### NOT BETWEEN operator
 
@@ -248,39 +262,57 @@ Same syntax as between just we use NOT with BETWEEN
 
 **Example:**
 
-`SELECT Name FROM student WHERE Admission_Date NOT BETWEEN "2022-01-15" AND "2024-05-10";`
+```SQL
+SELECT Name FROM student WHERE Admission_Date NOT BETWEEN "2022-01-15" AND "2024-05-10";
+```
 
 ### LIKE operator
 
-`Where department LIKE "d%"`
+```SQL
+Where department LIKE "d%"
+```
 
 It show all department that start with d
 
 ### use LIKE & NOT LIKE with SELECT
+
 **LIKE**
+
 `SELECT column1,column2,column3 FROM table_name WHERE  column_name LIKE pattern;`
 
 **Example:**
 
-`SELECT city,age FROM student_perssonal_info WHERE ph_number LIKE '132%';`
+```SQL
+SELECT city,age FROM student_perssonal_info WHERE ph_number LIKE '132%';
+```
 
-`SELECT Name FROM student WHERE Name LIKE '%e%';`
+```SQL
+SELECT Name FROM student WHERE Name LIKE '%e%';
+```
 
 **NOT LIKE**
 
 **Example:**
 
-`SELECT Name FROM student WHERE Name NOT LIKE '%e%';`
+```SQL
+SELECT Name FROM student WHERE Name NOT LIKE '%e%';
+```
 
-`SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%';`
+```SQL
+SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%';
+```
 
 ### Multiple pattern
 
 **Example:**
 
-`SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%' AND Admission_Date LIKE '2023%';`
+```SQL
+SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%' AND Admission_Date LIKE '2023%';
+```
 
-`SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%' OR Admission_Date LIKE '2023%';`
+```SQL
+SELECT Name FROM student WHERE Admission_Date NOT LIKE '2024%' OR Admission_Date LIKE '2023%';
+```
 
 ### Wildcard pattern
 
