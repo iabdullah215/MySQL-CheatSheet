@@ -990,7 +990,7 @@ CREATE TABLE NewStudent(
 
 The one key difference that distinguishes a **one-to-one relationship** from a **one-to-many relationship** is `the uniqueness of the foreign key`
 
-### One To Many RelationShip
+### Many To Many RelationShip
 
 A many-to-many relationship in a database allows multiple records in one table to be associated with multiple records in another table, typically implemented through a junction table that contains foreign keys from both tables.
 
